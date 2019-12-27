@@ -8,5 +8,17 @@
 </head>
 <body>
     <p>welcome to my chat app</p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    //this will try to make a connection
+        let socket = io();
+        /*notice that this socket.on is an event listener from the client side, listening to the server events*/
+        socket.on('connect',()=>{
+            console.log('connected to the server');
+        });
+        socket.on('disconnect',()=>{
+            console.log('disconnected from the server');
+        });
+    </script>
 </body>
 </html>

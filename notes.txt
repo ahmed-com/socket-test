@@ -1,0 +1,4 @@
+1-check the first 15min in https://www.youtube.com/watch?v=WNNf5JPuwZg&list=PLrwNNiB6YOA1a0_xXvogmvSHrLcanVKkF&index=2&ab_channel=WebDevJourney to know how to initialize a project with both git and heroku
+2-next we run npm i socket.io
+3-we create a server then pass that server instance to socker.io
+4-we use a script with the src /socket.io/socket.io.js in the html page that will request a connection
