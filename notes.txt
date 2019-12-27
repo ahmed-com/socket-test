@@ -1,4 +1,28 @@
+
+
 1-check the first 15min in https://www.youtube.com/watch?v=WNNf5JPuwZg&list=PLrwNNiB6YOA1a0_xXvogmvSHrLcanVKkF&index=2&ab_channel=WebDevJourney to know how to initialize a project with both git and heroku
 2-next we run npm i socket.io
-3-we create a server then pass that server instance to socker.io
-4-we use a script with the src /socket.io/socket.io.js in the html page that will request a connection
+3-we create a server then pass that server instance to socket.io
+
+
+
+
+
+
+--------------------------sockets-------------------
+1-we use a script with the src /socket.io/socket.io.js in the html page.
+2-that script is provided by the server, or specifically by the socket.io that had our server as an arguement and returned an io object.
+3-this script provides a function called io(); which will initiate the connection and provide the socket.
+4-now the client can use that socket to either emit custom events to the server or listen to them.
+4-meanwhile the server can use its io object to listen for any socket connection .
+5-then it can use that socket to also emit custom events for the client or listen to them.
+
+
+
+
+
+------------------broadcasting---------------------------
+1-broadcasting is emitting to all sockets connected and not to a single socket.
+2-the server does so by calling the emit function on the io object not on a single socket.
+3-you can also call socket.broadcast.emit function which will emit to everysocket except that socket
+4-you will typically use the first function always, but the second function is useful when someone joins the chat and you want to inform the others.
