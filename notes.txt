@@ -89,3 +89,16 @@ we just used navigator.geolocation.getCurrentLocation() function
 
 ---------------------------time formatting--------------------
 we just used moment for that; first you run npm install moment.
+
+
+
+
+
+
+
+
+
+-------------------------multible different rooms---------------------
+1-on connection of a socket you can decide which room it will join by calling socket.join(#roomId);
+2-now this socket is subscribed to that specific channel, so when emitting to that room only these sockets can listen
+3-the server can emit to a specific room by calling emit on io.to(#roomId) or socket.broadcast.to(#roomId)

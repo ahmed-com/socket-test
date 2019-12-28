@@ -4,7 +4,7 @@
 let socket = io();
 /*notice that this socket.on is an event listener from the client side, listening to the server events*/
 socket.on('connect',()=>{
-    console.log('connected to the server');
+    console.log('connected to the server with id: '+ socket.id);
 });
 socket.on('disconnect',()=>{
     console.log('disconnected from the server');

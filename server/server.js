@@ -12,7 +12,7 @@ let io = socketIO(server);
 
 app.use(express.static(publicPath));
 io.on('connection',socket =>{
-    console.log('a new user just connected');
+    console.log(`a new user connected with id: ${socket.id}`);
 
     socket.emit('newMessage',generateMessage('Admin','welcome to the chat app'));
 
