@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
-
+const {generateMessage,generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname,'/../public');
 const port =process.env.PORT || 3000;
 let app = express();
@@ -14,28 +14,21 @@ app.use(express.static(publicPath));
 io.on('connection',socket =>{
     console.log('a new user just connected');
 
-    socket.emit('newMessage',{
-        from:'Admin',
-        content:'welcome to the chat app',
-        createdAt: new Date().getTime()
-    });
+    socket.emit('newMessage',generateMessage('Admin','welcome to the chat app'));
 
-    socket.broadcast.emit('newMessage',{
-        from: 'Admin',
-        content: 'A new user just joind',
-        createdAt: new Date().getTime()
-    });
+    socket.broadcast.emit('newMessage',generateMessage('Admin','A new user just joind'));
 
-    socket.on('messageCreation',message =>{
+    socket.on('messageCreation',(message,callback) =>{
         console.log('the message created is '+message.content);
 
-        io.emit('newMessage',{
-            from: message.from,
-            content: message.content,
-            createdAt: new Date().getTime()
-        });
+        io.emit('newMessage',generateMessage(message.from,message.content));
 
+        callback("got it ");
     });//this is a custom event listener that is listening for a custom event emitted from that socket
+
+    socket.on('createLocationMessage',coords=>{
+        io.emit('newLocationMessage',generateLocationMessage('Admin',coords.lat,coords.lng));
+    });
 
     socket.on('disconnect',()=> console.log('user just disconnected'));
 });

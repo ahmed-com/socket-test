@@ -1,5 +1,17 @@
+--------------------------web sockets-----------------------------
+1-this is a different protocol than the standard http protocol, "but it is built on http".
+2-where in http the communicaton is a request followed by a response, websockets is "push data" from the server to the client.
+3-we will use a package called socket.io that will manage and configure this websocket protocol for us. this package however needs to be added on both the server and the client.
 
 
+
+
+
+
+
+
+
+-----------------------------------starting-------------------------------------
 1-check the first 15min in https://www.youtube.com/watch?v=WNNf5JPuwZg&list=PLrwNNiB6YOA1a0_xXvogmvSHrLcanVKkF&index=2&ab_channel=WebDevJourney to know how to initialize a project with both git and heroku
 2-next we run npm i socket.io
 3-we create a server then pass that server instance to socket.io
@@ -9,13 +21,15 @@
 
 
 
+
+
 --------------------------sockets-------------------
-1-we use a script with the src /socket.io/socket.io.js in the html page.
+1-we use a script with the src /socket.io/socket.io.js in the html page."or whatch https://www.udemy.com/course/nodejs-the-complete-guide/learn/lecture/12167294#overview if you're using react, there you can run npm install socket.io-client"
 2-that script is provided by the server, or specifically by the socket.io that had our server as an arguement and returned an io object.
 3-this script provides a function called io(); which will initiate the connection and provide the socket.
 4-now the client can use that socket to either emit custom events to the server or listen to them.
-4-meanwhile the server can use its io object to listen for any socket connection .
-5-then it can use that socket to also emit custom events for the client or listen to them.
+5-meanwhile the server can use its io object to listen for any socket connection .
+6-then it can use that socket to also emit custom events for the client or listen to them.
 
 
 
@@ -26,3 +40,52 @@
 2-the server does so by calling the emit function on the io object not on a single socket.
 3-you can also call socket.broadcast.emit function which will emit to everysocket except that socket
 4-you will typically use the first function always, but the second function is useful when someone joins the chat and you want to inform the others.
+
+
+
+
+
+
+
+
+
+
+------------------------testing------------------------------
+1-we will use mocha for testing. run npm install expect mocha --save-dev
+2-then you modify the package.json file , in scripts.test = "mocha server/**/*.test.js" ; this will test anything with the extension test.js
+3-now you can run npm test, to test 
+4-OR you can add scripts.test-watch = "nodemon --exec \"npm test\"" , then run npm run test-watch
+
+
+
+
+
+
+
+
+
+
+-----------------------acknowledgement------------------
+1-this is basically a way of confirmation.
+2-this is done by sending a callback that expects parameters when emitting the event, then the reciever can call this function which excutes on the emitter.'somehow ??!!??'
+
+
+
+
+
+
+
+
+
+---------------------geolocation--------------------
+we just used navigator.geolocation.getCurrentLocation() function
+
+
+
+
+
+
+
+
+---------------------------time formatting--------------------
+we just used moment for that; first you run npm install moment.
